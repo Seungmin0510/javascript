@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>다크 모드</title>
+    <style>
+        body{
+            margin: 0;
+            font-size: 20px;
+        }
+        .top-nav{
+            display: flex;  /* 양 옆 정렬*/
+            justify-content: space-between;    /* 끝으로 */
+            padding: 0 15px;
+        }
+        .mode-btn{
+            padding: 0 15px;
+            background: black;
+            color: white;
+            font-size: 20px;
+        }
+
+        .back-white
+        {
+            background: white;
+            color: black;
+        }
+
+        .back-black
+        {
+            background:black;
+            color:white;    
+        }
+    </style>
+</head>
+<body>
+    <!-- HTML 기본값 - 하얀배경 / 버튼을 누르면 다크 모드로 전환 -->
+    <div id="top" class="top-nav back-white">  <!--버튼과 배경을 반대로 설정-->
+        <h3 >
+            JavaScript
+        </h3>
+        <button id="mode-btn" class="mode-btn back-black">다크 모드</button>
+    </div>
+    <div id="bottom" class="main-box back-white">
+        <p>올해 년도는?</p>
+        <form>
+            <input type="text" id="submit-text">
+            <button class="back-white" id="submit-btn">제출</button>
+        </form>
+    </div>
+    
+    
+    <script>
+        var 모드 = 0
+        document.getElementById('mode-btn').addEventListener('click',function()
+        {
+            모드++     // ++ : 들어있는 값을 1 증가시켜라
+            // 모드가 짝수면 라이트모드, 홀수면 다크모드
+            if(모드 % 2 == 0)  // 2로 나눴을 때 나머지가 0이면 짝수
+            {
+                document.getElementById('top').classList.remove('back-black')
+                document.getElementById('top').classList.add('back-white')
+                document.getElementById('bottom').classList.remove('back-black')
+                document.getElementById('bottom').classList.add('back-white')
+                document.getElementById('mode-btn').classList.remove('back-white')
+                document.getElementById('mode-btn').classList.add('back-black')
+                document.getElementById('mode-btn').innerHTML = '다크모드'
+                //alert("다크모드 적용")
+            }
+            else    // 홀수
+            {
+                // back - white를 떼고 back-black을 추가시켜라 (단, 다크모드 버튼은 반대로)
+                document.getElementById('top').classList.remove('back-white')
+                document.getElementById('top').classList.add('back-black')
+                document.getElementById('bottom').classList.remove('back-white')
+                document.getElementById('bottom').classList.add('back-black')
+                document.getElementById('mode-btn').classList.remove('back-black')
+                document.getElementById('mode-btn').classList.add('back-white')
+                document.getElementById('mode-btn').innerHTML = '라이트모드'
+            }
+        })
+
+        // 제출버튼을 누르면
+        // input의 내용이 2024와 같았다면 alert("정답입니다")
+        // input의 내용이 2024와 같지 않았다면 alert("오답입니다")
+
+        document.getElementById('submit-btn').addEventListener('click', function(){
+            // input에 입력된 값을 가져와서
+            let 입력값 = document.getElementById('submit-text').value
+            //2024가 맞는지 확인
+            if(입력값 === "2024"){
+                alert("정답입니다")
+            }
+            else{
+                alert("오답입니다")
+            }
+})
+            //let은 {} 안에서 일반적으로 사용.(for 문에서 var 버그가 발생
+
+    </script>
+    
+</body>
+</html>
